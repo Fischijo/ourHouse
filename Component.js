@@ -81,4 +81,5 @@ function (UIComponent, JSONModel) {
 		}
 
 	});
+
 }, /* bExport= */ true);

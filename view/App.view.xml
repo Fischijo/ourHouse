@@ -1,0 +1,7 @@
+<View xmlns="sap.m">
+	<App 
+		id="rootControl"
+		backgroundImage="/ourHouse/media/background_1.jpg"
+		backgroundOpacity="0.5">
+	</App>
+</View>

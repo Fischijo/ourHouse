@@ -1,0 +1,24 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mc="sap.suite.ui.microchart">
+	<GenericTile 		
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop"
+		header="{sensorName}"
+		headerImage="{/tempIconUri}" 
+		frameType="OneByOne"
+		press="onTempTileClicked">
+		<TileContent 
+			footer="{= ${sensorOk} ? ${lastMeasurementTime} : 'Fehler'}"
+			footerColor="{= ${sensorOk} ? 'Neutral' : 'Error'}"> 
+				<NumericContent 
+					scale="{/tempUnit}"
+					withMargin="false"
+					truncateValueTo="5"
+					formatterValue="false"
+					value="{currentTemp}"
+					valueColor="{= ${sensorOk} ? ${criticality} : 'Error'}" 
+					indicator="{tempIndicator}"/>
+		</TileContent>
+	</GenericTile>
+</core:FragmentDefinition>

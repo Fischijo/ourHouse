@@ -1,0 +1,30 @@
+﻿<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout" >
+	<VBox id="containerLayout" width="100%">
+        <l:BlockLayout id="BlockLayout" background="Dashboard">
+                <l:BlockLayoutRow>
+                        <l:BlockLayoutCell
+                                width="2"
+                                title="Wohnzimmer Licht"
+								titleAlignment="Center">
+                                <VBox>
+                                        <HBox justifyContent="SpaceAround">
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeAan"  text="Lampe A an"  type="Accept" press="onLightSwitchPressed"/>
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeAaus" text="Lampe A aus" type="Reject" press="onLightSwitchPressed"/>
+                                        </HBox>
+                                        <HBox justifyContent="SpaceAround">
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeBan"  text="Lampe B an"  type="Accept" press="onLightSwitchPressed"/>
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeBaus" text="Lampe B aus" type="Reject" press="onLightSwitchPressed"/>
+                                        </HBox> 
+                                        <HBox justifyContent="SpaceAround">
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeCan"  text="Lampe C an"  type="Accept" press="onLightSwitchPressed"/>
+                                                <Button class="sapUiTinyMargin" id="wohnzimmerLampeCaus" text="Lampe C aus" type="Reject" press="onLightSwitchPressed"/>
+                                        </HBox>
+                                </VBox>
+                        </l:BlockLayoutCell>
+                </l:BlockLayoutRow>
+        </l:BlockLayout>
+</VBox>
+</core:FragmentDefinition>

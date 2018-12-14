@@ -1,0 +1,143 @@
+<mvc:View
+	controllerName="OurHouse.controller.TemperatureDetail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:comm="sap.suite.ui.commons"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.data="sap.viz.ui5.data" 
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	height="100%">
+	 
+	<Page id="" 
+		title="{sensorName}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		backgroundDesign="Solid">
+		
+		<content>
+		
+			<ObjectHeader
+				id="oh1"
+				fullScreenOptimized="false"
+				responsive="false"
+				icon="{/tempIconUri}"
+				iconAlt="Temp Icon"
+				title="{sensorName}"
+				backgroundDesign="Translucent">
+			<attributes>
+				<ObjectAttribute
+					title="Letzte Messung"
+					text="{currentTime}"/>
+			</attributes>
+			<attributes>
+				<ObjectAttribute
+					title="Sensor Typ"
+					text="{sensorType}"/>
+			</attributes>
+			<statuses>
+				<ObjectStatus
+					title="Status"
+					text="{= ${sensorOk} ? 'Ok' : 'Fehler' }"
+					state="{= ${sensorOk} ? 'Success' : 'Error' }"/>
+			</statuses>
+		</ObjectHeader>
+	
+			<HBox wrap="Wrap" justifyContent="SpaceAround">
+				<core:HTML id="tempGaugeHtmlId" content='&lt;div id=&quot;tempGauge&quot; class=&quot;160x100px&quot;&gt; &lt;/div&gt;' afterRendering="afterRenderingTempGauge"></core:HTML>
+				<core:HTML id="humGaugeHtmlId"  content='&lt;div id=&quot;humGauge&quot; class=&quot;160x100px&quot;&gt; &lt;/div&gt;' afterRendering="afterRenderingHumGauge"></core:HTML> 
+				<core:HTML id="presGaugeHtmlId"  content='&lt;div id=&quot;presGauge&quot; class=&quot;160x100px&quot;&gt; &lt;/div&gt;' afterRendering="afterRenderingPresGauge"></core:HTML> 
+			</HBox>
+			<Panel width="auto" expandable="true" expanded="true" headerText="Temperatur-/Luftfeuchtigkeitverlauf">
+				<content>
+					<!--
+					<Select  maxWidth="300px" change="onTimeframeChanged">
+                            <items>
+                                <core:Item text="24h" 	  key="1" />
+								<core:Item text="1 Woche" key="2" />
+								<core:Item text="1 Monat" key="3" />
+                            </items>
+                     </Select> -->
+				<FlexBox height="400px" renderType="Bare">
+					<items>
+					<comm:ChartContainer
+						id="chartContainer"
+						showFullScreen="true"
+						showPersonalization="false"
+						title=""
+						autoAdjustHeight="true"
+						showLegend="false"
+						fullScreen="true">						
+						<comm:content>
+							<comm:ChartContainerContent>
+								<comm:content>
+									<viz:VizFrame id="chartContainerVizFrame" uiConfig="{applicationSet:'fiori'}" height="200px" vizType="info/dual_line">
+										<viz:dataset>
+										  <viz.data:FlattenedDataset data="{/tempHistory}">
+											<viz.data:dimensions>
+											  <viz.data:DimensionDefinition name="Uhrzeit" value="{time}" dataType="string"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+											  <viz.data:MeasureDefinition name="Temperatur" value="{temp}"/>
+											  <viz.data:MeasureDefinition name="Luftfeuchte" 	value="{hum}"/>
+											</viz.data:measures> 
+										  </viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+										  <viz.feeds:FeedItem id="tempFeed" uid="valueAxis"		type="Measure"  	values="Temperatur"/>
+										  <viz.feeds:FeedItem id="humFeed"  uid="valueAxis2" 	type="Measure"  	values="Luftfeuchte"/>
+										  <viz.feeds:FeedItem uid="categoryAxis"  	type="Dimension" 	values="Uhrzeit"/>
+										</viz:feeds>
+								  </viz:VizFrame>
+								</comm:content>
+							</comm:ChartContainerContent>
+						</comm:content>
+					</comm:ChartContainer>					
+					</items>
+				</FlexBox>
+			</content>
+		 </Panel>
+		 <Panel id="presDiagramId" width="auto" expandable="true" expanded="true" headerText="Luftdruckverlauf"
+			visible="{pressureEnabled}">
+			<content>
+				<FlexBox height="400px" renderType="Bare">
+					<items>
+					<comm:ChartContainer
+						id="presChartContainer"
+						showFullScreen="true"
+						showPersonalization="false"
+						title=""
+						autoAdjustHeight="true"
+						showLegend="false"
+						fullScreen="true">						
+						<comm:content>
+							<comm:ChartContainerContent>
+								<comm:content>
+									<viz:VizFrame id="presChartContainerVizFrame" uiConfig="{applicationSet:'fiori'}" height="200px" vizType="line">
+										<viz:dataset>
+										  <viz.data:FlattenedDataset data="{/tempHistory}">
+											<viz.data:dimensions>
+											  <viz.data:DimensionDefinition name="Uhrzeit" value="{time}" dataType="string"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+											  <viz.data:MeasureDefinition name="Luftdruck" value="{pres}"/>
+											</viz.data:measures> 
+										  </viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+										  <viz.feeds:FeedItem id="presFeed" uid="valueAxis" type="Measure" values="Luftdruck"/>
+										  <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" 	values="Uhrzeit"/>
+										</viz:feeds>
+								  </viz:VizFrame>
+								</comm:content>
+							</comm:ChartContainerContent>
+						</comm:content>
+					</comm:ChartContainer>					
+					</items>
+				</FlexBox>
+			</content>
+		 </Panel>
+		</content>
+	</Page>
+</mvc:View>

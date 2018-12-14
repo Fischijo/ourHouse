@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mc="sap.suite.ui.microchart">
+	<GenericTile 
+		id="RaspberryTileId"
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+		header="Raspberry"  
+		headerImage="{/tempIconUri}" 
+		frameType="TwoByOne"
+		press="onTileClicked">
+		<TileContent footer="akuell">
+			<NumericContent scale="{/tempUnit}"
+				withMargin="false"
+				truncateValueTo="5"
+				formatterValue="false"
+				value="{/temperature/Raspberry/currentTemp}"
+				valueColor="{/temperature/Raspberry/criticality}" 
+				indicator="{/temperature/Raspberry/tempIndicator}"/>
+		</TileContent>
+		<TileContent footer="Temperaturverlauf">
+			<mc:LineMicroChart
+				size="Responsive"
+				threshold="38"
+				showPoints="false"
+				color="green"
+				class="sapUiSmallMargin"
+				rightTopLabel="{/temperature/Raspberry/currentTemp}"
+				rightBottomLabel="{/temperature/Raspberry/currentTime}"
+				leftTopLabel="{/temperature/Raspberry/lastTemp}"
+				leftBottomLabel="{/temperature/Raspberry/lastTime}"
+				points="{/temperature/Raspberry/tempHistory}">
+					<mc:LineMicroChartPoint x="{x}" y="{temp}"/> 
+			</mc:LineMicroChart>
+		</TileContent>
+	</GenericTile>
+</core:FragmentDefinition>

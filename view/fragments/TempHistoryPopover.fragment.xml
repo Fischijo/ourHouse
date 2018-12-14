@@ -1,0 +1,62 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:comm="sap.suite.ui.commons"
+	xmlns:viz="sap.viz.ui5.controls"
+	xmlns:layout="sap.ui.layout"
+	xmlns:viz.data="sap.viz.ui5.data" 
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds">
+	<Dialog
+		showHeader="false"
+		draggable="true"
+		resizable="true"
+		contentHeight="100%"
+		contentWidth="100%" 
+		id="tempDialogId"
+		verticalScrolling="true"
+		type="Standard"
+		stretch="true">
+		<content>
+				<FlexBox height="400px" renderType="Bare">
+					<items>
+					<comm:ChartContainer
+						id="chartContainer"
+						showFullScreen="true"
+						showPersonalization="false"
+						title=""
+						autoAdjustHeight="true"
+						showLegend="false"
+						fullScreen="true">						
+						<comm:content>
+							<comm:ChartContainerContent>
+								<comm:content>
+									<viz:VizFrame id="chartContainerVizFrame" uiConfig="{applicationSet:'fiori'}" height="200px" vizType="info/dual_line">
+										<viz:dataset>
+										  <viz.data:FlattenedDataset data="{/tempHistory}">
+											<viz.data:dimensions>
+											  <viz.data:DimensionDefinition name="Uhrzeit" value="{time}" dataType="string"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+											  <viz.data:MeasureDefinition name="Temperatur" value="{temp}"/>
+											  <viz.data:MeasureDefinition name="Humidity" 	value="{hum}"/>
+											</viz.data:measures> 
+										  </viz.data:FlattenedDataset>
+										</viz:dataset>
+										<viz:feeds>
+										  <viz.feeds:FeedItem uid="valueAxis"		type="Measure"  	values="Temperatur"/>
+										  <viz.feeds:FeedItem uid="valueAxis2" 		type="Measure"  	values="Humidity"/>  										  
+										  <viz.feeds:FeedItem uid="categoryAxis"  	type="Dimension" 	values="Uhrzeit"/>
+										</viz:feeds>
+								  </viz:VizFrame>
+								</comm:content>
+							</comm:ChartContainerContent>
+						</comm:content>
+					</comm:ChartContainer>					
+					</items>
+				</FlexBox>
+			</content>
+		<endButton>
+		 <Button text="Schließen" press="onClosePopoverPressed"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

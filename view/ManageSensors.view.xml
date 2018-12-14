@@ -1,0 +1,72 @@
+<mvc:View
+	controllerName="OurHouse.controller.ManageSensors"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	height="100%">
+	 
+	<Page id="" 
+		title="Sensoren einrichten"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		backgroundDesign="Solid">
+		<content>
+			<Table 
+				id="sensorTableId"
+				inset="false"
+				fixedLayout="false"
+				alternateRowColors="false"
+				keyboardMode="Navigation"
+				mode="SingleSelectMaster"
+				itemPress="onItemPress"
+				items="{
+					path: 'sensorData>/',
+					sorter: {
+						path: 'sensorName'
+					}
+				}">
+				<!-- headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Title text="Sensoren" level="H2" />
+						<ToolbarSpacer />
+						<Button id="editButton" text="Edit" type="Transparent"
+							press="onEdit" />
+						<Button id="saveButton" text="Save" type="Transparent"
+							press="onSave" visible="false" />
+						<Button id="cancelButton" text="Cancel" type="Transparent"
+							press="onCancel" visible="false" />
+					</OverflowToolbar> 
+				</headerToolbar> -->
+				<columns>
+					<Column>
+						<Text text="Sensor" />
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Type"/>
+					</Column>
+					<Column hAlign="End" demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Intervall"/>
+					</Column>
+					<Column width="9em" hAlign="Center" demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Reihenfolge" />
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="Aktiv" width="6em" hAlign="Center" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier
+								title="{sensorData>id}"
+								text="{sensorData>sensorName}"/>
+							<Text text="{sensorData>sensorType}"/>
+							<Text text="{sensorData>measurementIntervall}"/>
+							<Text text="{sensorData>displayOrder}"/>
+							<CheckBox selected="{sensorData>active}" enabled="false"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>		
+	</Page>
+</mvc:View>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Our House</title>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta charset="utf-8">
+	<!-- src="https://sapui5.hana.ondemand.com/1.56.14/resources/sap-ui-core.js" 
+	src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" -->
+	
+	<link  rel="stylesheet" href="css/style.css" type="text/css"/>
+	<script
+		id="sap-ui-bootstrap"
+		src="https://sapui5.hana.ondemand.com/1.56.14/resources/sap-ui-core.js"		
+		data-sap-ui-xx-bindingSyntax="complex" 
+		data-sap-ui-language="de"
+		data-sap-ui-theme="sap_belize"
+		data-sap-ui-libs="sap.m"
+		data-sap-ui-resourceroots='{"OurHouse": "./"}'
+		displayBlock="true">
+	</script>
+	<script src="raphael.js"></script>
+	<script src="justgage.js"></script>
+	<script>
+		
+		/*
+		var app = sap.m.App();
+		var oView = sap.ui.xmlview("idOverview", {
+						viewName: "OurHouse.view.Overview"
+						});
+		app.addPage(oView);
+		*/
+		
+		var app =  new sap.ui.core.ComponentContainer({
+							name : "OurHouse",
+							settings : {
+								id : "OurHouse"
+							}
+					});
+		
+		var oShell = new sap.m.Shell("applicationShellPage",
+								{
+									title 			: "Our House",
+									showLogout 		: false,
+									app 			: app,
+									appWidthLimited : false,
+									backgroundColor : "transparent",
+									homeIcon: {
+										favicon: "media/home32x32.png",
+										phone: "media/home32x32.png",
+										//"phone@2": "img/logo_114px.png",
+										tablet: "media/home32x32.png",
+										//"tablet@2": "img/logo_144px.png",
+										precomposed: false // whether the home icons already have some glare effects (for iOS)
+										}
+								});							
+		
+		sap.ui.getCore().attachInit(function () {
+			oShell.placeAt("content");			
+		});
+		
+	</script>
+</head>
+<body class="sapUiBody" id="content">
+</body>
+</html>

@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mc="sap.suite.ui.microchart">
+	<GenericTile 
+		class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+		header="Wohnzimmer" 
+		headerImage="{/tempIconUri}" frameType="TwoByOne">
+		<TileContent unit="" footer="aktuell">
+			<NumericContent 
+				scale="{/tempUnit}"
+				withMargin="false"
+				truncateValueTo="5"
+				formatterValue="false"
+				value="{/temperature/Wohnzimmer/currentTemp}" 
+				valueColor="{/temperature/Wohnzimmer/criticality}" 
+				indicator="{/temperature/Wohnzimmer/tempIndicator}"/>
+		</TileContent>
+		<TileContent footer="Temperaturverlauf">
+			<mc:LineMicroChart
+				size="Responsive"
+				maxYValue="30"
+				minYValue="15"
+				threshold="18"
+				showPoints="false"
+				color="green"
+				class="sapUiSmallMargin"
+				rightTopLabel="{/temperature/Wohnzimmer/currentTemp}"
+				rightBottomLabel="{/temperature/Wohnzimmer/currentTime}"
+				leftTopLabel="{/temperature/Wohnzimmer/lastTemp}"
+				leftBottomLabel="{/temperature/Wohnzimmer/lastTime}"
+				points="{/temperature/Wohnzimmer/tempHistory}">
+					<mc:LineMicroChartPoint x="{x}" y="{temp}"/> 
+			</mc:LineMicroChart>
+		</TileContent>
+	</GenericTile>
+</core:FragmentDefinition>

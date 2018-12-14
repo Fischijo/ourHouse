@@ -1,0 +1,61 @@
+<mvc:View
+	controllerName="OurHouse.controller.ManageSensorDetail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	height="100%">
+	 
+	<Page id="" 
+		title="Sensoren einrichten"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		backgroundDesign="Solid">
+		<headerContent>
+			<Button icon="sap-icon://save" text="Speichern" tooltip="Speichern" press="onSavePressed"/>
+		</headerContent>
+			
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm id="sensorForm"
+					editable="true"
+					layout="ResponsiveGridLayout"
+					title="Sensor {id}"
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" >
+					<f:content>
+						<Label text="Name" />
+						<Input id="name" value="{sensorName}" />
+						<Label text="Intervall" />
+						<Input value="{measurementIntervall}"/>						
+						<Label text="Reihenfolge" />
+						<Input value="{displayOrder}"/>
+						<Label text="Aktiv" />
+						<CheckBox selected="{active}" enabled="true"/>
+						<!--
+						<Input value="{City}" />
+						<Label text="Country" />
+						<Select id="country" selectedKey="{Country}">
+							<items>
+								<core:Item text="England" key="England"/>
+								<core:Item text="Germany" key="Germany"/>
+								<core:Item text="USA" key="USA"/>
+							</items>
+						</Select> -->
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+	</Page>
+</mvc:View>	

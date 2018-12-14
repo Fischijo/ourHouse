@@ -1,0 +1,31 @@
+<mvc:View
+  controllerName="OurHouse.controller.Overview"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m">
+	<Page id="overviewId" title="Our House" titleLevel="H1">
+		<Panel id="tempTilePanelId" width="auto" expandable="true" expanded="true" headerText="Temperatur">
+			<!-- content added programmatically -->
+		</Panel>	
+		<Panel id="lightPanelId" width="auto" expandable="true" expanded="true" headerText="Licht">
+			<!-- content added programmatically -->
+		</Panel>
+		<Panel width="auto" expandable="true" expanded="true" headerText="Mond">
+			<content>
+				<HBox class="sapUiMediumMarginBegin">
+					<core:HTML class="sapUiMediumMarginBegin" content='&lt;img border=0 src=&quot;https://www.der-mond.org/feature/luna.php?version=3&amp;txue=Mond+aktuell&amp;zeko=0&amp;zefu=0&amp;grmo=1&amp;txph=1&amp;txmoal=1&amp;txmoph=1&amp;txmobe=1&amp;txmophti=1&amp;txmost=0&amp;txmostau=0&amp;txze=1&amp;zezo=1&amp;zeso=1&amp;format=1&amp;schgr=9&amp;faan=1&amp;scro=0&amp;scgr=0&amp;scbl=0&amp;hiro=255&amp;higr=255&amp;hibl=255&amp;grsoho=0&amp;grsohoueber=0&amp;soep=0&amp;txsost=0&amp;txsostau=0&amp;geolagr=10&amp;geolami=0&amp;geolase=0&amp;geola=O&amp;geobrgr=50&amp;geobrmi=0&amp;geobrse=0&amp;geobr=N&amp;lang=de&quot;&gt;'></core:HTML>
+				</HBox>
+			</content>
+		</Panel>
+		<Panel width="auto" expandable="true" expanded="false" headerText="Einstellungen">
+			<content>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Sensoren einrichten"
+					 press="onManageSensorsPress">
+					<TileContent>
+						<ImageContent src="sap-icon://performance" />
+					</TileContent>
+				</GenericTile>
+			</content>
+		</Panel>
+	  </Page> 
+</mvc:View>
